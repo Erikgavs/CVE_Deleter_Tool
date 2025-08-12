@@ -4,8 +4,8 @@ import shutil
 import pathlib
 
 
-Ruta = input("Específica la donde se en cuentran los archivos que quieres borrar: ")
-texto = input("Proporciona algúna palabra que contenga el archivo que quieras borrar: ")
+Ruta = input("\nEspecífica la donde se en cuentran los archivos que quieres borrar:")
+texto = input("\nProporciona algúna palabra que contenga el archivo que quieras borrar: ")
 
 print(f"La ruta seleccionada es: {Ruta} y la palabra de los archivos es: {texto}")
 
@@ -14,8 +14,10 @@ confirm = input("si la ruta y la palabra clave son correctas escribe y, si es in
 # EL USUARIO CONFIRMA QUE LAS RUTAS SON LAS CORRECTAS
 if confirm.lower() == "y":
     print("[*] Confirmado")
-else:
+elif confirm.lower() == "n":
     print("[-] Abortado")
+    exit()
+else:
     exit()
 
 #COMPROBAMOS QUE LA RUTA PROPORCIONADA EXISTA
@@ -27,6 +29,12 @@ else:
     exit()
 
 
-archivos = os.listdir(ruta)
+archivos = os.listdir(Ruta)
+
 for archivo in archivos:
-    print(archivo)
+    if texto in archivo:
+        print(f"[*] Archivo encontrado: {archivo}")
+
+        # BORRADO DEL ARCHIVO
+        ruta_completa = os.path.join(Ruta, archivo)
+        os.rmdir(ruta_completa)
