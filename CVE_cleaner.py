@@ -1,21 +1,20 @@
 
 import os
 import shutil
-import pathlib
 
 
-Ruta = input("\nEspecífica la donde se en cuentran los archivos que quieres borrar:")
+Ruta = input("\nEspecífica la ruta donde se en cuentran los archivos que quieres borrar: ")
 texto = input("\nProporciona algúna palabra que contenga el archivo que quieras borrar: ")
 
-print(f"La ruta seleccionada es: {Ruta} y la palabra de los archivos es: {texto}")
+print(f"\nLa ruta seleccionada es: {Ruta} \n la palabra de los archivos es: {texto}")
 
-confirm = input("si la ruta y la palabra clave son correctas escribe y, si es incorrecto n: \n")
+confirm = input("\nsi la ruta y la palabra clave son correctas escribe y, si es incorrecto n: \n")
 
 # EL USUARIO CONFIRMA QUE LAS RUTAS SON LAS CORRECTAS
 if confirm.lower() == "y":
-    print("[*] Confirmado")
+    print("\n[*] Confirmado")
 elif confirm.lower() == "n":
-    print("[-] Abortado")
+    print("\n[-] Abortado")
     exit()
 else:
     exit()
@@ -23,9 +22,9 @@ else:
 #COMPROBAMOS QUE LA RUTA PROPORCIONADA EXISTA
 
 if os.path.exists(Ruta):
-    print(f"[*] La ruta {Ruta} existe")
+    print(f"\n[*] La ruta {Ruta} existe")
 else:
-    print(f"[-] La ruta {Ruta} no existe, cerrando script")
+    print(f"\n[-] La ruta {Ruta} no existe, cerrando script")
     exit()
 
 
@@ -33,8 +32,15 @@ archivos = os.listdir(Ruta)
 
 for archivo in archivos:
     if texto in archivo:
-        print(f"[*] Archivo encontrado: {archivo}")
+        print(f"\n[*] Archivo encontrado: {archivos}")
 
         # BORRADO DEL ARCHIVO
         ruta_completa = os.path.join(Ruta, archivo)
-        os.rmdir(ruta_completa)
+        if os.path.isfile(ruta_completa):
+            os.remove(ruta_completa)
+            print(f"\nArchivos eliminados {archivos}")
+        elif os.path.isdir(ruta_completa):
+            shutil.rmtree(ruta_completa) # BORRA CARPETA Y Su contenido
+            print(f"\nCarpetas eliminadas {archivos}")
+        else:
+            print("\n[-] Error al borrar los directorios o archivos")
