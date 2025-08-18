@@ -29,6 +29,7 @@ else:
 
 
 archivos = os.listdir(Ruta)
+verificar = False
 
 for archivo in archivos:
     if texto in archivo:
@@ -39,8 +40,14 @@ for archivo in archivos:
         if os.path.isfile(ruta_completa):
             os.remove(ruta_completa)
             print(f"\nArchivo eliminado correctamente: {archivo}\n")
+            verificar = True
         elif os.path.isdir(ruta_completa):
             shutil.rmtree(ruta_completa) # BORRA CARPETA Y Su contenido
             print(f"\nCarpeta eliminada correctamente: {archivo} \n")
+            verificar = True
         else:
             print("\n[-] Error al borrar los directorios o archivos")
+
+if not verificar:
+    print("[-] Archivo no encontrado")
+    exit()
