@@ -8,7 +8,7 @@ está creado con la intención de borrar archivos o carpetas que estén repetida
 
 ## Ejemplo de Uso 
 
-tenemos un directorio con 5 carpetas que empiezan por CVE, le diremos al script que la palabra clave es CVE
+tenemos un directorio con 5 carpetas que empiezan por CVE, le diremos al script que la palabra clave es CVE, entonces borrará todos los archivos de una ruta que contenga la palabra **CVE**
 
 ## Atención 
 
